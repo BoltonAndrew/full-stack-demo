@@ -1,0 +1,21 @@
+name: Redeploy on Render
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  redeploy_on_render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger front-end redeploy
+        run: |
+          curl -X GET \
+          https://api.render.com/deploy/srv-your-front-end-service?key=your-key
+
+      - name: Trigger back-end redeploy
+        run: |
+          curl -X GET \
+          https://api.render.com/deploy/srv-your-back-end-service?key=your-key
